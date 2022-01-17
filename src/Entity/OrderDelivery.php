@@ -19,7 +19,7 @@ class OrderDelivery
     #[ORM\JoinColumn(nullable: false)]
     private $id_Order;
 
-    #[ORM\OneToMany(mappedBy: 'orderDelivery', targetEntity: Adress::class)]
+    #[ORM\OneToMany(mappedBy: 'orderDelivery', targetEntity: Address::class)]
     private $id_Adress;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -48,14 +48,14 @@ class OrderDelivery
     }
 
     /**
-     * @return Collection|Adress[]
+     * @return Collection|Address[]
      */
     public function getIdAdress(): Collection
     {
         return $this->id_Adress;
     }
 
-    public function addIdAdress(Adress $idAdress): self
+    public function addIdAdress(Address $idAdress): self
     {
         if (!$this->id_Adress->contains($idAdress)) {
             $this->id_Adress[] = $idAdress;
@@ -65,7 +65,7 @@ class OrderDelivery
         return $this;
     }
 
-    public function removeIdAdress(Adress $idAdress): self
+    public function removeIdAdress(Address $idAdress): self
     {
         if ($this->id_Adress->removeElement($idAdress)) {
             // set the owning side to null (unless already changed)

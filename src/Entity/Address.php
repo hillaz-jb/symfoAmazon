@@ -6,7 +6,7 @@ use App\Repository\AdressRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AdressRepository::class)]
-class Adress
+class Address
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -14,10 +14,10 @@ class Adress
     private $id;
 
     #[ORM\Column(type: 'string', length: 100)]
-    private $adress1;
+    private $address1;
 
     #[ORM\Column(type: 'string', length: 100)]
-    private $adress2;
+    private $address2;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $country;
@@ -32,31 +32,35 @@ class Adress
     #[ORM\JoinColumn(nullable: false)]
     private $orderDelivery;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'addresses')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $customer;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAdress1(): ?string
+    public function getAddress1(): ?string
     {
-        return $this->adress1;
+        return $this->address1;
     }
 
-    public function setAdress1(string $adress1): self
+    public function setAddress1(string $address1): self
     {
-        $this->adress1 = $adress1;
+        $this->address1 = $address1;
 
         return $this;
     }
 
-    public function getAdress2(): ?string
+    public function getAddress2(): ?string
     {
-        return $this->adress2;
+        return $this->address2;
     }
 
-    public function setAdress2(string $adress2): self
+    public function setAddress2(string $address2): self
     {
-        $this->adress2 = $adress2;
+        $this->address2 = $address2;
 
         return $this;
     }
@@ -105,6 +109,18 @@ class Adress
     public function setOrderDelivery(?OrderDelivery $orderDelivery): self
     {
         $this->orderDelivery = $orderDelivery;
+
+        return $this;
+    }
+
+    public function getCustomer(): ?User
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(?User $customer): self
+    {
+        $this->customer = $customer;
 
         return $this;
     }
