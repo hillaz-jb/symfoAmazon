@@ -28,6 +28,10 @@ class Adress
     #[ORM\Column(type: 'string', length: 255)]
     private $zip_code;
 
+    #[ORM\ManyToOne(targetEntity: OrderDelivery::class, inversedBy: 'id_Adress')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $orderDelivery;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +93,18 @@ class Adress
     public function setZipCode(string $zip_code): self
     {
         $this->zip_code = $zip_code;
+
+        return $this;
+    }
+
+    public function getOrderDelivery(): ?OrderDelivery
+    {
+        return $this->orderDelivery;
+    }
+
+    public function setOrderDelivery(?OrderDelivery $orderDelivery): self
+    {
+        $this->orderDelivery = $orderDelivery;
 
         return $this;
     }
