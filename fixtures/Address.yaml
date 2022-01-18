@@ -1,0 +1,7 @@
+App\Entity\Address:
+  addresses{1..10}:
+    address1 : 'aaa'
+    address2 : 'aaa'
+    country : 'aaa'
+    city : 'aaa'
+    zip_code : 'aaa'
