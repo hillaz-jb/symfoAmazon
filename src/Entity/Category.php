@@ -27,16 +27,9 @@ class Category
     #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'categories')]
     private $articles;
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'id_parent')]
-    private $parent;
-
-    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
-    private $id_parent;
-
     public function __construct()
     {
         $this->articles = new ArrayCollection();
-        $this->id_parent = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -102,48 +95,6 @@ class Category
     {
         if ($this->articles->removeElement($article)) {
             $article->removeCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function getParent(): ?self
-    {
-        return $this->parent;
-    }
-
-    public function setParent(?self $parent): self
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|self[]
-     */
-    public function getIdParent(): Collection
-    {
-        return $this->id_parent;
-    }
-
-    public function addIdParent(self $idParent): self
-    {
-        if (!$this->id_parent->contains($idParent)) {
-            $this->id_parent[] = $idParent;
-            $idParent->setParent($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdParent(self $idParent): self
-    {
-        if ($this->id_parent->removeElement($idParent)) {
-            // set the owning side to null (unless already changed)
-            if ($idParent->getParent() === $this) {
-                $idParent->setParent(null);
-            }
         }
 
         return $this;
