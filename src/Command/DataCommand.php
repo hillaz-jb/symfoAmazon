@@ -14,7 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
-    name: 'app_Data',
+    name: 'app:data',
     description: 'Add Data ',
 )]
 class DataCommand extends Command
@@ -33,14 +33,20 @@ class DataCommand extends Command
 
     protected function configure(): void
     {
-        //$this->setName('app_Data');
+        //$this->setName('app:data');
     }
 
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('Command starting...');
-        $categories = ['jeux', 'vêtements', 'alimentation'];
+        $categories = [['name' => 'jeux',
+            'description' => 'lorem'],
+                        ['name' => 'vêtements',
+                            'description' => 'lorem'],
+                        ['name' => 'alimentation',
+                            'description' => 'lorem']
+                    ];
         $order = 0;
         $progressBar = new ProgressBar($output, count($categories));
         $progressBar->start();
@@ -49,8 +55,8 @@ class DataCommand extends Command
 
             $cat = new Category();
 
-            $cat->setName($category);
-            $cat->setDescription('bla bla de la description');
+            $cat->setName($category['name']);
+            $cat->setDescription($category['description']);
             $cat->setCategoryOrder($order);
             $order += 1;
             $this->entityManager->persist($cat);
