@@ -27,6 +27,7 @@ class Address
 
     #[ORM\Column(type: 'string', length: 255)]
     private $zip_code;
+    //truc
 
     #[ORM\ManyToOne(targetEntity: OrderDelivery::class, inversedBy: 'id_Adress')]
     #[ORM\JoinColumn(nullable: false)]
