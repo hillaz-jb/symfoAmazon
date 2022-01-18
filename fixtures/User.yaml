@@ -5,4 +5,4 @@ App\Entity\User:
     registeredAt: '<dateTimeBetween("1980-01-01", "now")>'
     email: '<email()>'
     password: 'test'
-    addresses : '@addresses*'
+#    addresses : '@addresses*'
