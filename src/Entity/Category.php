@@ -21,9 +21,6 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private $description;
 
-    #[ORM\Column(type: 'integer')]
-    private $category_order;
-
     #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'categories')]
     private $articles;
 
@@ -64,18 +61,6 @@ class Category
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getCategoryOrder(): ?int
-    {
-        return $this->category_order;
-    }
-
-    public function setCategoryOrder(int $category_order): self
-    {
-        $this->category_order = $category_order;
 
         return $this;
     }

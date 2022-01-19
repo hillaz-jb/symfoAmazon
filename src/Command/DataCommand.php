@@ -99,7 +99,6 @@ class DataCommand extends Command
             ],
         ];
 
-        $order = 0;
         $progressBar = new ProgressBar($output, count($categories));
         $progressBar->start();
 
@@ -108,8 +107,6 @@ class DataCommand extends Command
             $cat->setName($category['name']);
             $cat->setDescription($category['description']);
             $cat->setParent($this->categoryRepository->findOneBy(['name' => $category['parent']]));
-            $cat->setCategoryOrder($order);
-            $order += 1;
             $this->entityManager->persist($cat);
             $this->entityManager->flush();
             $progressBar->advance();
