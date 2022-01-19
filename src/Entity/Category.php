@@ -21,8 +21,6 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private $description;
 
-
-
     #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'categories')]
     private $articles;
 

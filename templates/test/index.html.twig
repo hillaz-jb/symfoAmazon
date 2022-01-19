@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestController!{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+    <h1>Test</h1>
+    <div><a class="btn btn-warning mb-3" href="{{ path('app_logout') }}">Déconnexion</a></div>
+    <div><a class="btn btn-warning mb-3" href="{{ path('app_login') }}">Se connecter</a></div>
+    <div><a class="btn btn-warning mb-3" href="{{ path('app_register') }}">S'enregistrer'</a></div>
+
+
+</div>
+{% endblock %}
