@@ -1,0 +1,9 @@
+App\Entity\Address:
+  address{1..10}:
+    address1: '<buildingNumber()>'
+    address2: '<streetName()>'
+    country: '<country()>'
+    city: '<city()>'
+    zip_code: '<postcode()>'
+    customer: '@user*'
+

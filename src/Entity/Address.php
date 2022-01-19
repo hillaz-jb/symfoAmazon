@@ -30,11 +30,11 @@ class Address
     //truc
 
     #[ORM\ManyToOne(targetEntity: OrderDelivery::class, inversedBy: 'id_Adress')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $orderDelivery;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'addresses')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $customer;
 
     public function getId(): ?int

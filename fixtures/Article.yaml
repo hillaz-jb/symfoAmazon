@@ -1,0 +1,9 @@
+App\Entity\Article:
+  article{1..200}:
+    name: '<word()>'
+    description: '<text(200)>'
+    price: '<numberBetween(2..150)>'
+    stock: '<numberBetween(0..25)>'
+    tva: '20'
+    categories: '2x @category*'
+

@@ -1,0 +1,57 @@
+App\Entity\Category:
+  category1:
+    name: 'Jeux'
+    description: '<text(200)>'
+
+  category2:
+    name: 'vetements'
+    description: '<text(200)>'
+
+  category3:
+    name: 'alimentation'
+    description: '<text(200)>'
+
+  category4:
+    name: 'Jeux Video'
+    description: '<text(200)>'
+    parent: '@category1'
+
+  category5:
+    name: 'Jouet pour adulte'
+    description: '<text(200)>'
+    parent: '@category1'
+
+  category6:
+    name: 'vetement homme'
+    description: '<text(200)>'
+    parent: '@category2'
+
+  category7:
+    name: 'vetement femme'
+    description: '<text(200)>'
+    parent: '@category2'
+
+  category8:
+    name: 'vetement enfant'
+    description: '<text(200)>'
+    parent: '@category2'
+
+  category9:
+    name: 'gateaux'
+    description: '<text(200)>'
+    parent: '@category3'
+
+  category10:
+    name: 'bonbon'
+    description: '<text(200)>'
+    parent: '@category3'
+
+  category11:
+    name: 'epicerie'
+    description: '<text(200)>'
+    parent: '@category3'
+
+  category12:
+    name: 'jeux de societe'
+    description: '<text(200)>'
+    parent: '@category1'
