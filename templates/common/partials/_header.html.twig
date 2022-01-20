@@ -15,7 +15,8 @@
             </ul>
             <span class="navbar-text">
                 {% if app.user %}
-                    <span class="text-light me-3">Wesh {{ app.user.firstName~' '~app.user.lastName }} !</span><a class="btn btn-outline-warning" href="{{ path('app_logout') }}">Déconnexion</a>
+                    <span class="text-light me-3">Wesh {{ app.user.firstName~' '~app.user.lastName }} !</span>
+                    <a class="btn btn-outline-warning" href="{{ path('app_logout') }}">Déconnexion</a>
                 {% else %}
                 <a class="btn btn-outline-warning" href="{{ path('app_login') }}">Se connecter</a>
                 {% endif %}

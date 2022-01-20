@@ -18,6 +18,15 @@ class SecurityController extends AbstractController
         //     return $this->redirectToRoute('target_path');
         // }
 
+        $user = $this->getUser();
+
+        if ($this->getUser()) {
+            if (in_array('ROLE_ADMIN', $user->getRoles())){
+                return $this->redirectToRoute('admin_index');
+            }
+             return $this->redirectToRoute('home_index');
+        }
+
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
