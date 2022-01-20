@@ -15,10 +15,14 @@
             {{ encore_entry_script_tags('scripts') }}
         {% endblock %}
     </head>
-    <body>
+    <body class="bg-dark">
 
         {% include 'base/nav.html.twig' %}
-        {% block body %}   {% endblock %}
+        <div class="container">
+        {% block body %}
+
+        {% endblock %}
+        </div>
         {% include 'base/footer.html.twig' %}
     </body>
 </html>

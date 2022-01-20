@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,6 +20,28 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+
+    public function findWithRelations(arrayCollection $categories)
+    {
+
+        $arrayCatIds = [];
+
+        foreach ($categories as $category) {
+            $arrayCatIds[] = $category->getId();
+        }
+        $qb = $this->createQueryBuilder('article');
+        if (count($arrayCatIds) > 0) {
+            $qb
+                ->innerJoin('article.categories', 'c')
+                ->where('c.id IN (:data_ids)')
+                ->setParameter('data_ids', $arrayCatIds);
+            return $qb->getQuery()
+                ->getResult();
+        } else {
+            return $qb->getQuery()
+                ->getResult();
+        }
+    }
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */

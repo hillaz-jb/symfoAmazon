@@ -1,4 +1,10 @@
 App\Entity\User:
+  userAdmin:
+    firstName: 'admin'
+    lastName: 'leplusbeau'
+    registeredAt: '<dateTimeBetween("1980-01-01", "now")>'
+    email: 'admin@live.fr'
+    password: 'test'
   user{1..10}:
     firstName: '<firstName()>'
     lastName: '<lastName()>'
