@@ -51,15 +51,13 @@ class AccountController extends AbstractController
         ]);
     }
 
-    /**
-     * @throws NonUniqueResultException
-     */
     #[Route('/', name: 'account_show')]
     public function show(): Response
     {
         if ($this->getUser()) {
+            $user = $this->getUser();
             return $this->render('account/show.html.twig', [
-                'account' => $this->getUser(),
+                'account' => $user,
             ]);
         }
         return $this->redirectToRoute('home_index');
