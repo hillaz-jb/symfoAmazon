@@ -1,4 +1,6 @@
 /.idea
+/templates/test
+/src/Command/TestCommand.php
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php

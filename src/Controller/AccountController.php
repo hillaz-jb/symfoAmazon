@@ -29,13 +29,13 @@ class AccountController extends AbstractController
     }
 
 
-    #[Route('/', name: 'account_index')]
+    /*#[Route('/', name: 'account_index')]
     public function index(): Response
     {
         return $this->render('account/index.html.twig', [
             'controller_name' => 'AccountController',
         ]);
-    }
+    }*/
 
     #[Route('/edit/{id}', name: 'account_edit')]
     public function editCountry(Request $request, User $account): Response {
@@ -44,7 +44,7 @@ class AccountController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($form->getData());
             $this->em->flush();
-            return $this->redirectToRoute('account_index');
+            return $this->redirectToRoute('account_show');
         }
         return $this->render('account/edit.html.twig',[
             'form' => $form->createView(),
@@ -54,12 +54,12 @@ class AccountController extends AbstractController
     /**
      * @throws NonUniqueResultException
      */
-    #[Route('/{id}', name: 'account_show')]
-    public function show($id): Response
+    #[Route('/', name: 'account_show')]
+    public function show(): Response
     {
         if ($this->getUser()) {
             return $this->render('account/show.html.twig', [
-                'account' => $this->userRepository->findOneDetailedUser($id),
+                'account' => $this->getUser(),
             ]);
         }
         return $this->redirectToRoute('home_index');
