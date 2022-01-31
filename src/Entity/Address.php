@@ -2,10 +2,19 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AdressRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AdressRepository::class)]
+#[ApiResource(
+    collectionOperations: [
+        'post',
+        'get' => [
+            "security" => "is_granted('ROLE_ADMIN')"
+        ],
+    ],
+)]
 class Address
 {
     #[ORM\Id]

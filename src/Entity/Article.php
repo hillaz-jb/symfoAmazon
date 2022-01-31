@@ -2,38 +2,59 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ApiResource(
+    collectionOperations: [
+        'post',
+        'get' => [
+            'normalization_context' => [
+                    'groups' => ['light'],
+                ],
+            "security" => "is_granted('ROLE_ADMIN')"
+        ],
+    ],
+)]
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(['light'])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(['light'])]
     private $name;
 
     #[ORM\Column(type: 'text')]
+    #[Groups(['light'])]
     private $description;
 
     #[ORM\Column(type: 'integer')]
+    #[Groups(['light'])]
     private $price;
 
     #[ORM\Column(type: 'integer', nullable: true)]
+    #[Groups(['light'])]
     private $stock;
 
     #[ORM\Column(type: 'float')]
+    #[Groups(['light'])]
     private $tva;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'articles')]
+    #[Groups(['light'])]
     private $categories;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups(['light'])]
     private $img;
 
     public function __construct()

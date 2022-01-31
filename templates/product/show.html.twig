@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{{ product.name }}
+    <img src="{{ asset("upload/") ~ product.img }}" alt="">
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}

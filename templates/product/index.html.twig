@@ -26,7 +26,7 @@
                                     {% if article.description|length > 25 %}
                                         ...
                                     {% endif %}</p>
-                                <a href="#" class="btn btn-primary"> Détails de l'article </a>
+                                <a href="{{ path('product_show', {'id': article.id}) }}" class="btn btn-primary"> Détails de l'article </a>
                             </div>
                         </div>
                     </div>

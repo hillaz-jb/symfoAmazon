@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Form\SearchType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,6 +47,18 @@ class ProductController extends AbstractController
 //            'articles' => $this->ar->findBy([], ['name' => 'ASC']),
             'article_list' => $this->ar->findAll(),
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     */
+    #[Route('/product/{id}', name: 'product_show')]
+    public function show($id): Response
+    {
+        $article = $this->ar->findOneBy(['id' => $id]);
+        return $this->render('product/show.html.twig', [
+            'product' => $article,
         ]);
     }
 }
